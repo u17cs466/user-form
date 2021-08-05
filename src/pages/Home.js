@@ -14,11 +14,11 @@ function Home(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(formData)
+
     if (formData.password !== formData.confirmPassword) {
-      setError('password not correct');
+      setError('password do not match');
     } else {
-      setError(null);
+      setError(null)
       fetch('http://localhost:5000/api/users', {
         method: 'POST',
         headers: {
@@ -32,7 +32,7 @@ function Home(props) {
 
             props.history.push('/users');
           } else {
-            setError('user not register')
+            setError('user not register and also try with new username')
           }
         });
     }
@@ -50,29 +50,30 @@ function Home(props) {
         setFormData({ ...formData, ProfileImage: res.data._id })
       })
   }
-  
+
   return (
     <>
-      <div className='text-center mt-5 '>FILL USER FORM</div>
+      <div className='text-center mt-5 text-2xl '>FILL USER FORM</div>
 
-      <div className=' px-10 py-12 mt-10 bg-gray-100 space-y-3 rounded-md max-w-md mx-auto  text-center'>
+      <div className=' px-10 py-10 mt-2 mb-1 bg-gray-100 space-y-3 rounded-md max-w-md mx-auto  text-center'>
 
-        <div class=" justify-center mt-8 content-center">
+        <div className=" justify-center content-center space-y-1">
 
-          {image && <img className="h-10 w-10" src={image} />}
+          {image && <img className="h-28 w-32 mx-auto" src={image} alt={image} />}
           <input type="file" name="profileImage" onChange={handleFile} />
         </div>
         <form onChange={handleChange} onSubmit={handleSubmit}>
-          <div className=' bg-green-300  h-11'>
+          <div className=' bg-green-300  h-14'>
             <label className=' -ml-14'>Name</label>
             <input
               className=' rounded-sm border-2 m-2 ml-5 outline-none'
               placeholder='name'
               type='name'
               name='name'
+              required
             />
           </div>
-          <div className='bg-green-300 h-11'>
+          <div className='bg-green-300 h-14'>
             <label className='-ml-10'>UserName</label>
             <input
               className=' rounded-sm border-2 m-2 outline-none'
@@ -82,7 +83,7 @@ function Home(props) {
               required
             />
           </div>
-          <div className='bg-green-300 h-11'>
+          <div className='bg-green-300 h-14'>
             <label className=' -ml-12'>Password</label>
             <input
               className=' rounded-sm border-2 m-2 outline-none'
@@ -92,8 +93,8 @@ function Home(props) {
               required
             />
           </div>
-          {error}
-          <div className='bg-green-300 h-11'>
+
+          <div className='bg-green-300 h-14'>
             <label className=' ml-2'>ConfirmPassword</label>
             <input
               className=' rounded-sm border-2 m-2 outline-none'
@@ -103,7 +104,7 @@ function Home(props) {
               required
             />
           </div>
-          <div className='bg-green-300 h-11'>
+          <div className='bg-green-300 h-14'>
             <label className=' -ml-11'>Zip Code</label>
             <input
               className=' rounded-sm border-2 m-2 outline-none'
@@ -113,7 +114,7 @@ function Home(props) {
               required
             />
           </div>
-
+          {error}
           <div>
             <button className='h-9 w-20 mt-7 bg-green-300' type='submit'>
               Submit

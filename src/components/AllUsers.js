@@ -13,7 +13,7 @@ function AllUsers() {
                         if (res.status === 'success') {
                               setUserData(res.data);
                         } else {
-                              setError('something goes wrong please check connection');
+                              setError('please try again sometime');
                         }
                   });
       }, []);
@@ -21,6 +21,7 @@ function AllUsers() {
       
       return (
             <div>
+                  {error}
                   <div>
                         {' '}
                         <Link to='/'>
@@ -28,6 +29,7 @@ function AllUsers() {
                                     <button className=" mt-10 ml-16 h-10 w-20 bg-green-300">Add User</button>
                               </div>
                         </Link>
+
                   </div>
                   <div class='grid grid-flow-row grid-cols-4 grid-rows-4 gap-3'>
                         {userData.map((user) => (
